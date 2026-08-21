@@ -15,7 +15,7 @@ exports.main = async () => {
   const dailyRes = await db.collection('daily')
     .where({ date: day })
     .orderBy('sort', 'asc')
-    .limit(5)
+    .limit(6)
     .get()
 
   const records = dailyRes.data

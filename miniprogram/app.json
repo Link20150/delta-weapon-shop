@@ -2,10 +2,8 @@
   "pages": [
     "pages/recommend/recommend",
     "pages/arsenal/arsenal",
-    "pages/profile/profile",
-    "pages/detail/detail",
-    "pages/quiz/quiz",
-    "pages/my-codes/my-codes"
+    "pages/gun/gun",
+    "pages/detail/detail"
   ],
   "window": {
     "navigationBarTitleText": "三角洲武器铺",
@@ -26,10 +24,6 @@
       {
         "pagePath": "pages/arsenal/arsenal",
         "text": "枪库"
-      },
-      {
-        "pagePath": "pages/profile/profile",
-        "text": "我的"
       }
     ]
   },

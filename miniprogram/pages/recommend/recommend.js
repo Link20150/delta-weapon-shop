@@ -15,15 +15,15 @@ Page({
     this.loadDaily().finally(() => wx.stopPullDownRefresh())
   },
 
-  // 优先走云函数 getDaily，未部署时降级为示例数据
+  // 优先走云函数 getDaily，未部署时降级为示例数据；首页只展示 4-6 套
   async loadDaily() {
-    const fallback = sample.slice(0, 3).map(item => Object.assign({ title: item.gunName + ' · ' + item.configName }, item))
+    const fallback = sample.slice(0, 6).map(item => Object.assign({ title: item.gunName + ' · ' + item.configName }, item))
     try {
       const res = await wx.cloud.callFunction({ name: 'getDaily' })
       const result = res.result || {}
       const list = (result.list || []).map(item => Object.assign({ id: item._id }, item))
       this.setData({
-        daily: (list.length ? list : fallback),
+        daily: (list.length ? list : fallback).slice(0, 6),
         password: result.password || ''
       })
     } catch (e) {
@@ -31,8 +31,8 @@ Page({
     }
   },
 
-  goQuiz() {
-    wx.navigateTo({ url: '/pages/quiz/quiz' })
+  goArsenal() {
+    wx.switchTab({ url: '/pages/arsenal/arsenal' })
   },
 
   goDetail(e) {

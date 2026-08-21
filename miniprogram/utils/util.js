@@ -8,6 +8,11 @@ function copyText(text) {
   })
 }
 
+// 枪名归一化：去空格/连字符/点号等，统一小写，用于匹配
+function normGunName(name) {
+  return String(name || '').toLowerCase().replace(/[\s\-·「」]/g, '')
+}
+
 // ---------- 收藏（本地缓存） ----------
 const FAV_KEY = 'df_favorites'
 
@@ -54,6 +59,7 @@ function removeMyCode(id) {
 
 module.exports = {
   copyText,
+  normGunName,
   getFavorites,
   isFavorite,
   addFavorite,

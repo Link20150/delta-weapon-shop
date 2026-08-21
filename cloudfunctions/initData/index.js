@@ -29,11 +29,13 @@ async function ensureCollection(name) {
   }
 }
 
-// 按配置名关键字挑选每日推荐，找不到时退回兜底下标
-function pickByConfig(ids, keyword, fallbackIndex) {
-  const idx = codes.findIndex(item => item.configName.indexOf(keyword) > -1)
-  return ids[idx >= 0 ? idx : fallbackIndex]
+// 按配置名精确挑选每日推荐（避免同名关键字误配）
+function pickByConfigName(name) {
+  const idx = codes.findIndex(item => item.configName === name)
+  return idx >= 0 ? ids[idx] : null
 }
+
+let ids = []
 
 exports.main = async () => {
   await ensureCollection('codes')
@@ -43,13 +45,15 @@ exports.main = async () => {
   const clearedDaily = await clear('daily')
 
   const codesRes = await db.collection('codes').add({ data: codes })
-  const ids = codesRes._ids || (codesRes._id ? [codesRes._id] : [])
+  ids = codesRes._ids || (codesRes._id ? [codesRes._id] : [])
 
-  // 当天推荐：新手国民码 / 低价开局 / 顶配参考
+  // 当天推荐：新手国民码 / 低价开局 / 超低价上手 / 高伤害低预算 / 顶配参考
   const dailySeed = [
-    { date: today(), codeId: pickByConfig(ids, '国民', 0), title: '今日主打：K437 国民改枪码（新手首选）', sort: 1 },
-    { date: today(), codeId: pickByConfig(ids, '全绿', 0), title: '低价开局：M4A1 全绿性价比', sort: 2 },
-    { date: today(), codeId: pickByConfig(ids, '90W', 7), title: '顶配参考：M7 全距离满改', sort: 3 }
+    { date: today(), codeId: pickByConfigName('27W 红点国民码'), title: '今日主打：K437 红点国民码（新手首选）', sort: 1 },
+    { date: today(), codeId: pickByConfigName('全绿性价比'), title: '低价开局：M4A1 全绿性价比', sort: 2 },
+    { date: today(), codeId: pickByConfigName('3W 职业青春版'), title: '超低价上手：KC17 职业青春版', sort: 3 },
+    { date: today(), codeId: pickByConfigName('20W 丐版颗秒'), title: '高伤害低预算：AKM 20W 颗秒', sort: 4 },
+    { date: today(), codeId: pickByConfigName('90W 全距离满改'), title: '顶配参考：M7 全距离满改', sort: 5 }
   ]
   await db.collection('daily').add({ data: dailySeed })
 

@@ -1,3 +1,4 @@
 {
-  "navigationBarTitleText": "枪库"
+  "navigationBarTitleText": "全部枪械",
+  "enablePullDownRefresh": true
 }

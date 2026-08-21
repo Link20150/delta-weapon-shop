@@ -1,47 +1,79 @@
+const guns = require('../../data/guns.js')
 const sample = require('../../data/sample-codes.js')
 const util = require('../../utils/util.js')
+
+const CATEGORIES = ['全部', '突击步枪', '战斗步枪', '冲锋枪', '精确射手步枪', '轻机枪', '霰弹枪', '狙击步枪', '手枪']
 
 Page({
   data: {
     query: '',
-    priceLevel: '全部',
-    priceLevels: ['全部', '低', '中', '高', '满改'],
-    all: [],
-    list: []
+    categories: CATEGORIES,
+    activeCategory: '全部',
+    sections: [],
+    total: 0,
+    covered: 0,
+    loading: true
   },
 
   onLoad() {
     this.load()
   },
 
-  // 优先走云函数 getCodes，未部署时降级为示例数据
+  onPullDownRefresh() {
+    this.load().finally(() => wx.stopPullDownRefresh())
+  },
+
+  // 加载全部改枪码 → 统计每把枪的方案数 → 合并到全枪械清单
   async load() {
     let codes = sample
     try {
-      const res = await wx.cloud.callFunction({
-        name: 'getCodes',
-        data: { gunName: this.data.query, priceLevel: this.data.priceLevel }
-      })
+      const res = await wx.cloud.callFunction({ name: 'getCodes' })
       if (res.result && res.result.list && res.result.list.length) {
-        // 云数据库返回 _id，统一映射为 id 供收藏等本地逻辑使用
         codes = res.result.list.map(item => Object.assign({ id: item._id }, item))
       }
     } catch (e) {
       // 云函数未部署，使用本地示例
     }
-    this.setData({ all: codes })
+
+    const countMap = {}
+    codes.forEach(item => {
+      const key = util.normGunName(item.gunName)
+      countMap[key] = (countMap[key] || 0) + 1
+    })
+
+    const all = guns.map(gun => Object.assign({}, gun, {
+      key: util.normGunName(gun.name),
+      count: countMap[util.normGunName(gun.name)] || 0
+    }))
+
+    this.setData({
+      all,
+      total: all.length,
+      covered: all.filter(gun => gun.count > 0).length,
+      loading: false
+    })
     this.applyFilter()
   },
 
   applyFilter() {
-    const { query, priceLevel, all } = this.data
+    const { all, query, activeCategory } = this.data
     const q = query.trim().toLowerCase()
-    const list = all.filter(item => {
-      const hitQuery = !q || (item.gunName || '').toLowerCase().indexOf(q) > -1
-      const hitPrice = priceLevel === '全部' || item.priceLevel === priceLevel
-      return hitQuery && hitPrice
+    const filtered = all.filter(gun => {
+      const hitQuery = !q || gun.name.toLowerCase().indexOf(q) > -1
+      const hitCategory = activeCategory === '全部' || gun.category === activeCategory
+      return hitQuery && hitCategory
     })
-    this.setData({ list })
+
+    // 按分类分组
+    const sections = CATEGORIES
+      .filter(cat => cat !== '全部')
+      .map(cat => ({
+        category: cat,
+        guns: filtered.filter(gun => gun.category === cat)
+      }))
+      .filter(section => section.guns.length)
+
+    this.setData({ sections })
   },
 
   onQueryInput(e) {
@@ -49,17 +81,15 @@ Page({
     this.applyFilter()
   },
 
-  onPriceTap(e) {
-    this.setData({ priceLevel: e.currentTarget.dataset.value })
+  onCategoryTap(e) {
+    this.setData({ activeCategory: e.currentTarget.dataset.value })
     this.applyFilter()
   },
 
-  goDetail(e) {
-    getApp().globalData.currentCode = this.data.list[e.currentTarget.dataset.index]
-    wx.navigateTo({ url: '/pages/detail/detail' })
-  },
-
-  copyCode(e) {
-    util.copyText(e.currentTarget.dataset.code)
+  goGun(e) {
+    const gun = e.currentTarget.dataset.gun
+    wx.navigateTo({
+      url: '/pages/gun/gun?name=' + encodeURIComponent(gun.name) + '&category=' + encodeURIComponent(gun.category)
+    })
   }
 })

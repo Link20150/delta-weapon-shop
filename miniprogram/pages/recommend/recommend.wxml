@@ -25,6 +25,6 @@
     <view class="btn-ghost daily-copy" catchtap="copyCode" data-code="{{item.code}}">复制改枪码</view>
   </view>
 
-  <!-- 条件推荐入口 -->
-  <view class="btn-primary quiz-entry" bindtap="goQuiz">按我的条件推荐</view>
+  <!-- 枪库入口 -->
+  <view class="btn-ghost arsenal-entry" bindtap="goArsenal">去枪库找你的枪 →</view>
 </view>

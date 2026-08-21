@@ -1,0 +1,17 @@
+.gun-head {
+  background: #1d2433;
+}
+
+.gun-name {
+  font-size: 40rpx;
+  font-weight: 700;
+  margin-bottom: 8rpx;
+}
+
+.daily-reason {
+  margin-bottom: 16rpx;
+}
+
+.empty-btn {
+  margin-top: 32rpx;
+}
