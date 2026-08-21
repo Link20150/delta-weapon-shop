@@ -9,3 +9,6 @@ dist/
 # 系统文件
 .DS_Store
 Thumbs.db
+
+# 临时预览二维码（会过期，不提交）
+preview-qr.png

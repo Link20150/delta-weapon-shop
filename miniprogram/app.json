@@ -6,7 +6,7 @@
     "pages/detail/detail"
   ],
   "window": {
-    "navigationBarTitleText": "三角洲武器铺",
+    "navigationBarTitleText": "猛攻武器铺",
     "navigationBarBackgroundColor": "#14151f",
     "navigationBarTextStyle": "white",
     "backgroundColor": "#0f1017"
