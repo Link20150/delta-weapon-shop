@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/recommend/recommend",
+    "pages/arsenal/arsenal",
+    "pages/profile/profile",
+    "pages/detail/detail",
+    "pages/quiz/quiz",
+    "pages/my-codes/my-codes"
+  ],
+  "window": {
+    "navigationBarTitleText": "三角洲武器铺",
+    "navigationBarBackgroundColor": "#14151f",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0f1017"
+  },
+  "tabBar": {
+    "color": "#8a8f9c",
+    "selectedColor": "#e8b64c",
+    "backgroundColor": "#14151f",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/recommend/recommend",
+        "text": "推荐"
+      },
+      {
+        "pagePath": "pages/arsenal/arsenal",
+        "text": "枪库"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

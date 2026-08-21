@@ -1,0 +1,21 @@
+<view class="page">
+  <view class="stats-row">
+    <view class="card stat-card">
+      <view class="stat-num">{{favCount}}</view>
+      <view class="muted">收藏</view>
+    </view>
+    <view class="card stat-card" bindtap="goMyCodes">
+      <view class="stat-num">{{myCodeCount}}</view>
+      <view class="muted">我的代码</view>
+    </view>
+  </view>
+
+  <view class="btn-ghost my-codes-entry" bindtap="goMyCodes">管理我的代码</view>
+
+  <view class="section-title">我的收藏</view>
+  <view class="empty muted" wx:if="{{!favorites.length}}">还没有收藏，去枪库挑几套吧</view>
+  <view class="card fav-card" wx:for="{{favorites}}" wx:key="id" data-index="{{index}}" bindtap="goDetail">
+    <view class="fav-name">{{item.gunName}} · {{item.configName}}</view>
+    <view class="muted">{{item.mode}} · {{item.priceLevel}}预算</view>
+  </view>
+</view>

@@ -1,0 +1,79 @@
+.tip-card {
+  background: #1d2433;
+  border-left: 8rpx solid #4caf50;
+}
+
+.tip-title {
+  font-weight: 600;
+  color: #4caf50;
+  margin-bottom: 8rpx;
+}
+
+.tip-desc {
+  line-height: 1.6;
+}
+
+.password-card {
+  border-left: 8rpx solid #e8b64c;
+}
+
+.password-title {
+  color: #e8b64c;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+
+.password-code {
+  font-size: 34rpx;
+  letter-spacing: 2rpx;
+  word-break: break-all;
+}
+
+.password-copy {
+  margin-top: 16rpx;
+}
+
+.section-title {
+  margin: 24rpx 4rpx 16rpx;
+  font-weight: 600;
+  color: #e8b64c;
+}
+
+.daily-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+}
+
+.daily-meta {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 12rpx;
+}
+
+.tag {
+  background: #242738;
+  color: #aab0c0;
+  border-radius: 8rpx;
+  font-size: 22rpx;
+  padding: 6rpx 14rpx;
+  margin: 0 10rpx 10rpx 0;
+}
+
+.tag-price {
+  color: #e8b64c;
+}
+
+.daily-reason {
+  margin-bottom: 16rpx;
+}
+
+.daily-copy {
+  font-size: 26rpx;
+  padding: 14rpx 0;
+}
+
+.quiz-entry {
+  margin-top: 28rpx;
+  font-size: 30rpx;
+}

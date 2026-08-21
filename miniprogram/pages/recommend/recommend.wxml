@@ -1,0 +1,30 @@
+<view class="page">
+  <!-- 新手引导 -->
+  <view class="card tip-card">
+    <view class="tip-title">不会改枪？直接抄</view>
+    <view class="tip-desc muted">下面的方案都是便宜好用的，复制改枪码，进游戏在改枪台导入就能用。先求好用，不追满改。</view>
+  </view>
+
+  <!-- 今日密码 -->
+  <view class="card password-card" wx:if="{{password}}">
+    <view class="password-title">今日密码</view>
+    <view class="password-code">{{password}}</view>
+    <view class="btn-ghost password-copy" bindtap="copyCode" data-code="{{password}}">复制密码</view>
+  </view>
+
+  <!-- 每日推荐 -->
+  <view class="section-title">每日推荐</view>
+  <view class="card daily-card" wx:for="{{daily}}" wx:key="id" data-item="{{item}}" bindtap="goDetail">
+    <view class="daily-title">{{item.title || item.gunName + ' · ' + item.configName}}</view>
+    <view class="daily-meta">
+      <text class="tag">{{item.mode}}</text>
+      <text class="tag tag-price">{{item.priceLevel}}预算</text>
+      <text class="tag" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+    </view>
+    <view class="daily-reason muted">{{item.reason}}</view>
+    <view class="btn-ghost daily-copy" catchtap="copyCode" data-code="{{item.code}}">复制改枪码</view>
+  </view>
+
+  <!-- 条件推荐入口 -->
+  <view class="btn-primary quiz-entry" bindtap="goQuiz">按我的条件推荐</view>
+</view>

@@ -1,0 +1,69 @@
+.form-label {
+  color: #aab0c0;
+  font-size: 24rpx;
+  margin: 16rpx 0 10rpx;
+}
+
+.code-input {
+  background: #0f1017;
+  border-radius: 12rpx;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+  font-size: 24rpx;
+  min-height: 140rpx;
+}
+
+.form-input {
+  background: #0f1017;
+  border-radius: 12rpx;
+  padding: 18rpx 20rpx;
+  font-size: 26rpx;
+}
+
+.input-placeholder {
+  color: #5d6272;
+}
+
+.save-btn {
+  margin-top: 24rpx;
+}
+
+.section-title {
+  color: #e8b64c;
+  font-weight: 600;
+  margin: 24rpx 4rpx 16rpx;
+}
+
+.empty {
+  text-align: center;
+  padding: 60rpx 0;
+}
+
+.my-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.my-code {
+  font-size: 22rpx;
+  word-break: break-all;
+  margin-bottom: 16rpx;
+}
+
+.my-actions {
+  display: flex;
+}
+
+.action-btn {
+  background: #242738;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  padding: 10rpx 28rpx;
+  margin-right: 16rpx;
+}
+
+.action-btn.danger {
+  color: #e05b5b;
+}
