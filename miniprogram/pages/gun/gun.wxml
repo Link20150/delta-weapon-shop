@@ -1,19 +1,27 @@
 <view class="page">
   <view class="gun-head card" wx:if="{{gunName}}">
-    <view class="gun-name">{{gunName}}</view>
-    <view class="muted">{{category}} · {{list.length}} 套方案</view>
+    <view class="gun-thumb" style="background-image:url('{{img}}')"></view>
+    <view class="gun-head-cell">
+      <view class="gun-name">{{gunName}}</view>
+      <view class="muted">{{category}} · {{list.length}} 套方案</view>
+    </view>
   </view>
 
   <view class="empty muted" wx:if="{{loading}}">加载中…</view>
 
   <block wx:elif="{{list.length}}">
     <view class="card code-card" wx:for="{{list}}" wx:key="id" data-item="{{item}}" bindtap="goDetail">
-      <view class="code-header">
-        <view class="code-name">{{item.configName}}</view>
-        <view class="code-price">{{item.priceLevel}}预算</view>
-      </view>
-      <view class="code-tags">
-        <text class="tag" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+      <view class="code-top">
+        <view class="gun-thumb sm" style="background-image:url('{{item.img}}')"></view>
+        <view class="code-main">
+          <view class="code-header">
+            <view class="code-name">{{item.configName}}</view>
+            <view class="code-price">{{item.priceLevel}}预算</view>
+          </view>
+          <view class="code-tags">
+            <text class="tag" wx:for="{{item.tags}}" wx:for-item="t" wx:key="*this">{{t}}</text>
+          </view>
+        </view>
       </view>
       <view class="daily-reason muted">{{item.reason}}</view>
       <view class="code-row">

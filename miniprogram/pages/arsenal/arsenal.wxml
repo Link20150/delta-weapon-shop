@@ -30,6 +30,7 @@
   <block wx:for="{{sections}}" wx:key="category" wx:for-item="section">
     <view class="section-title">{{section.category}}</view>
     <view class="gun-row card" wx:for="{{section.guns}}" wx:key="key" wx:for-item="gun" data-gun="{{gun}}" bindtap="goGun">
+      <view class="gun-thumb sm" style="background-image:url('{{gun.img}}')"></view>
       <view class="gun-cell">
         <view class="gun-name">{{gun.name}}</view>
         <view class="muted gun-sub">{{gun.count ? '有 ' + gun.count + ' 套方案' : '暂无方案'}}</view>

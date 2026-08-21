@@ -13,6 +13,27 @@ function normGunName(name) {
   return String(name || '').toLowerCase().replace(/[\s\-·「」]/g, '')
 }
 
+// 分类 → 枪械贴图文件
+const CATEGORY_IMG = {
+  '突击步枪': 'ar',
+  '战斗步枪': 'br',
+  '冲锋枪': 'smg',
+  '精确射手步枪': 'dmr',
+  '轻机枪': 'lmg',
+  '霰弹枪': 'shotgun',
+  '狙击步枪': 'sniper',
+  '手枪': 'pistol'
+}
+
+// 根据枪名返回枪械贴图路径（找不到时用突击步枪图兜底）
+function gunImg(gunName) {
+  const guns = require('../data/guns.js')
+  const key = normGunName(gunName)
+  const gun = guns.find(g => normGunName(g.name) === key)
+  const catKey = gun ? (CATEGORY_IMG[gun.category] || 'ar') : 'ar'
+  return '/images/weapons/' + catKey + '.svg'
+}
+
 // ---------- 收藏（本地缓存） ----------
 const FAV_KEY = 'df_favorites'
 
@@ -60,6 +81,7 @@ function removeMyCode(id) {
 module.exports = {
   copyText,
   normGunName,
+  gunImg,
   getFavorites,
   isFavorite,
   addFavorite,

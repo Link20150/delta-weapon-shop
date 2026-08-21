@@ -3,7 +3,8 @@ const util = require('../../utils/util.js')
 
 Page({
   data: {
-    daily: []
+    daily: [],
+    mascot: '/images/mascot.svg'
   },
 
   onLoad() {
@@ -16,11 +17,15 @@ Page({
 
   // 优先走云函数 getDaily，未部署时降级为示例数据；首页只展示 4-6 套
   async loadDaily() {
-    const fallback = sample.slice(0, 6).map(item => Object.assign({ title: item.gunName + ' · ' + item.configName }, item))
+    const decorate = item => Object.assign({}, item, {
+      title: item.title || item.gunName + ' · ' + item.configName,
+      img: util.gunImg(item.gunName)
+    })
+    const fallback = sample.slice(0, 6).map(decorate)
     try {
       const res = await wx.cloud.callFunction({ name: 'getDaily' })
       const result = res.result || {}
-      const list = (result.list || []).map(item => Object.assign({ id: item._id }, item))
+      const list = (result.list || []).map(item => decorate(Object.assign({ id: item._id }, item)))
       this.setData({
         daily: (list.length ? list : fallback).slice(0, 6)
       })

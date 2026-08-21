@@ -1,12 +1,18 @@
 .count-tip {
   margin: 4rpx 4rpx 16rpx;
+  color: #9aa1b3;
 }
 
 .gun-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 22rpx 24rpx;
+  padding: 20rpx 24rpx;
+}
+
+.gun-cell {
+  flex: 1;
+  margin-left: 20rpx;
+  min-width: 0;
 }
 
 .gun-name {
@@ -20,14 +26,16 @@
 
 .gun-badge {
   flex-shrink: 0;
-  background: #242738;
-  color: #5d6272;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1rpx solid rgba(255, 255, 255, 0.09);
+  color: #6d7488;
   border-radius: 999rpx;
   font-size: 22rpx;
   padding: 8rpx 20rpx;
 }
 
 .gun-badge.has {
-  background: #2a2f18;
-  color: #e8b64c;
+  background: rgba(232, 182, 76, 0.12);
+  border-color: rgba(232, 182, 76, 0.24);
+  color: #f0c75e;
 }

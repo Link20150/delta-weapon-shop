@@ -1,7 +1,13 @@
 <view class="page" wx:if="{{code}}">
+  <view class="card detail-head">
+    <view class="gun-thumb" style="background-image:url('{{code.img}}')"></view>
+    <view class="detail-head-cell">
+      <view class="detail-title">{{code.gunName}}</view>
+      <view class="detail-subtitle">{{code.configName}}</view>
+    </view>
+  </view>
+
   <view class="card">
-    <view class="detail-title">{{code.gunName}}</view>
-    <view class="detail-subtitle">{{code.configName}}</view>
     <view class="detail-meta">
       <text class="tag">{{code.mode}}</text>
       <text class="tag tag-price">{{code.priceLevel}}预算</text>

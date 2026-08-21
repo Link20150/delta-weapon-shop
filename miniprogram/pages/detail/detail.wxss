@@ -1,11 +1,23 @@
+.detail-head {
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(circle at 85% 15%, rgba(232, 182, 76, 0.16), transparent 45%),
+    rgba(255, 255, 255, 0.06);
+}
+
+.detail-head-cell {
+  margin-left: 24rpx;
+}
+
 .detail-title {
   font-size: 44rpx;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .detail-subtitle {
-  color: #e8b64c;
-  margin: 8rpx 0 16rpx;
+  color: #f0c75e;
+  margin-top: 8rpx;
 }
 
 .detail-meta {
@@ -13,28 +25,31 @@
 }
 
 .tag {
-  background: #242738;
-  color: #aab0c0;
-  border-radius: 8rpx;
-  font-size: 22rpx;
-  padding: 6rpx 14rpx;
   margin-right: 10rpx;
-}
-
-.tag-price {
-  color: #e8b64c;
 }
 
 .section-title {
   margin-bottom: 16rpx;
-  font-weight: 600;
-  color: #e8b64c;
+  font-weight: 700;
+  color: #eef0f6;
+  display: flex;
+  align-items: center;
+}
+
+.section-title::before {
+  content: '';
+  width: 8rpx;
+  height: 30rpx;
+  border-radius: 6rpx;
+  background: linear-gradient(180deg, #f2ca66, #d9a832);
+  margin-right: 14rpx;
 }
 
 .code-box {
   display: block;
-  background: #0f1017;
-  border-radius: 12rpx;
+  background: rgba(11, 13, 22, 0.6);
+  border: 1rpx solid rgba(255, 255, 255, 0.08);
+  border-radius: 16rpx;
   padding: 24rpx;
   font-size: 26rpx;
   line-height: 1.6;
