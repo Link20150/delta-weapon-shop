@@ -1,4 +1,4 @@
-// 一键初始化：把示例改枪码导入 codes 集合，并写入当天 daily 推荐
+// 一键初始化：把改枪码导入 codes 集合，并写入当天 daily 推荐
 const cloud = require('wx-server-sdk')
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
@@ -29,6 +29,12 @@ async function ensureCollection(name) {
   }
 }
 
+// 按配置名关键字挑选每日推荐，找不到时退回兜底下标
+function pickByConfig(ids, keyword, fallbackIndex) {
+  const idx = codes.findIndex(item => item.configName.indexOf(keyword) > -1)
+  return ids[idx >= 0 ? idx : fallbackIndex]
+}
+
 exports.main = async () => {
   await ensureCollection('codes')
   await ensureCollection('daily')
@@ -37,13 +43,13 @@ exports.main = async () => {
   const clearedDaily = await clear('daily')
 
   const codesRes = await db.collection('codes').add({ data: codes })
-
-  // 当天推荐：取 3 条示例（M4A1 全绿 / CAR-15 任务 / M14 满改）+ 今日密码示例
   const ids = codesRes._ids || (codesRes._id ? [codesRes._id] : [])
+
+  // 当天推荐：新手国民码 / 低价开局 / 顶配参考
   const dailySeed = [
-    { date: today(), codeId: ids[0], title: '今日主打：新手第一把 M4A1', sort: 1, password: 'DF2026DEMO' },
-    { date: today(), codeId: ids[1], title: '低战备任务款', sort: 2 },
-    { date: today(), codeId: ids[7], title: '机密/绝密满改架点款', sort: 3 }
+    { date: today(), codeId: pickByConfig(ids, '国民', 0), title: '今日主打：K437 国民改枪码（新手首选）', sort: 1 },
+    { date: today(), codeId: pickByConfig(ids, '全绿', 0), title: '低价开局：M4A1 全绿性价比', sort: 2 },
+    { date: today(), codeId: pickByConfig(ids, '90W', 7), title: '顶配参考：M7 全距离满改', sort: 3 }
   ]
   await db.collection('daily').add({ data: dailySeed })
 
