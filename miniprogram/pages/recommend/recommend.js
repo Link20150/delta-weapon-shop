@@ -3,8 +3,7 @@ const util = require('../../utils/util.js')
 
 Page({
   data: {
-    daily: [],
-    mascot: '/images/mascot.svg'
+    daily: []
   },
 
   onLoad() {
@@ -18,8 +17,7 @@ Page({
   // 优先走云函数 getDaily，未部署时降级为示例数据；首页只展示 4-6 套
   async loadDaily() {
     const decorate = item => Object.assign({}, item, {
-      title: item.title || item.gunName + ' · ' + item.configName,
-      img: util.gunImg(item.gunName)
+      title: item.title || item.gunName + ' · ' + item.configName
     })
     const fallback = sample.slice(0, 6).map(decorate)
     try {

@@ -5,7 +5,6 @@ Page({
   data: {
     gunName: '',
     category: '',
-    img: '',
     list: [],
     loading: true
   },
@@ -13,8 +12,7 @@ Page({
   onLoad(options) {
     this.setData({
       gunName: options.name || '',
-      category: options.category || '',
-      img: util.gunImg(options.name || '')
+      category: options.category || ''
     })
     wx.setNavigationBarTitle({ title: options.name || '枪械方案' })
     this.load()
@@ -39,8 +37,7 @@ Page({
     } catch (e) {
       // 云函数未部署，使用本地示例
     }
-    const decorated = codes.map(item => Object.assign({}, item, { img: util.gunImg(item.gunName) }))
-    this.setData({ list: decorated, loading: false })
+    this.setData({ list: codes, loading: false })
   },
 
   goDetail(e) {

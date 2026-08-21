@@ -43,7 +43,6 @@ Page({
 
     const all = guns.map(gun => Object.assign({}, gun, {
       key: util.normGunName(gun.name),
-      img: util.gunImg(gun.name),
       count: countMap[util.normGunName(gun.name)] || 0
     }))
 

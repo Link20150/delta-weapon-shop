@@ -8,9 +8,6 @@ Page({
 
   onLoad() {
     const code = getApp().globalData.currentCode
-    if (code) {
-      code.img = util.gunImg(code.gunName)
-    }
     this.setData({
       code,
       fav: code ? util.isFavorite(code.id) : false

@@ -1,13 +1,8 @@
 .detail-head {
-  display: flex;
-  align-items: center;
+  padding: 32rpx 30rpx;
   background:
-    radial-gradient(circle at 85% 15%, rgba(232, 182, 76, 0.16), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(52, 199, 89, 0.14), transparent 45%),
     rgba(255, 255, 255, 0.06);
-}
-
-.detail-head-cell {
-  margin-left: 24rpx;
 }
 
 .detail-title {
@@ -16,7 +11,7 @@
 }
 
 .detail-subtitle {
-  color: #f0c75e;
+  color: #5ce184;
   margin-top: 8rpx;
 }
 
@@ -41,7 +36,7 @@
   width: 8rpx;
   height: 30rpx;
   border-radius: 6rpx;
-  background: linear-gradient(180deg, #f2ca66, #d9a832);
+  background: linear-gradient(180deg, #5ce184, #2fae57);
   margin-right: 14rpx;
 }
 

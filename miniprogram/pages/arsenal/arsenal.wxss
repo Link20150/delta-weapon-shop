@@ -6,12 +6,11 @@
 .gun-row {
   display: flex;
   align-items: center;
-  padding: 20rpx 24rpx;
+  padding: 22rpx 24rpx;
 }
 
 .gun-cell {
   flex: 1;
-  margin-left: 20rpx;
   min-width: 0;
 }
 
@@ -35,7 +34,7 @@
 }
 
 .gun-badge.has {
-  background: rgba(232, 182, 76, 0.12);
-  border-color: rgba(232, 182, 76, 0.24);
-  color: #f0c75e;
+  background: rgba(52, 199, 89, 0.12);
+  border-color: rgba(52, 199, 89, 0.24);
+  color: #5ce184;
 }

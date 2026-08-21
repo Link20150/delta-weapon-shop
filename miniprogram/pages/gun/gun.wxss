@@ -1,31 +1,14 @@
 .gun-head {
-  display: flex;
-  align-items: center;
+  padding: 30rpx;
   background:
-    radial-gradient(circle at 85% 15%, rgba(232, 182, 76, 0.16), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(52, 199, 89, 0.14), transparent 45%),
     rgba(255, 255, 255, 0.06);
-}
-
-.gun-head-cell {
-  margin-left: 22rpx;
 }
 
 .gun-name {
   font-size: 40rpx;
   font-weight: 800;
   margin-bottom: 8rpx;
-}
-
-.code-top {
-  display: flex;
-  align-items: center;
-  margin-bottom: 14rpx;
-}
-
-.code-main {
-  flex: 1;
-  margin-left: 20rpx;
-  min-width: 0;
 }
 
 .code-header {
@@ -41,14 +24,14 @@
 }
 
 .code-price {
-  color: #f0c75e;
+  color: #5ce184;
   font-size: 24rpx;
   flex-shrink: 0;
   margin-left: 12rpx;
 }
 
 .code-tags {
-  margin-bottom: 6rpx;
+  margin-bottom: 12rpx;
 }
 
 .daily-reason {
@@ -71,13 +54,13 @@
 
 .code-copy {
   flex-shrink: 0;
-  background: linear-gradient(135deg, #f2ca66 0%, #d9a832 100%);
-  color: #14151f;
+  background: linear-gradient(135deg, #5ce184 0%, #2fae57 100%);
+  color: #0f1410;
   font-size: 24rpx;
   font-weight: 700;
   border-radius: 12rpx;
   padding: 10rpx 26rpx;
-  box-shadow: 0 8rpx 22rpx rgba(232, 182, 76, 0.25);
+  box-shadow: 0 8rpx 22rpx rgba(52, 199, 89, 0.24);
 }
 
 .empty-btn {
