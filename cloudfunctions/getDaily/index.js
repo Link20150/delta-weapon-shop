@@ -1,4 +1,4 @@
-// 每日推荐 + 今日密码：按当天日期读取 daily 集合，关联 codes 集合
+// 每日推荐：按当天日期读取 daily 集合，关联 codes 集合
 const cloud = require('wx-server-sdk')
 
 cloud.init({ env: cloud.DYNAMIC_CURRENT_ENV })
@@ -19,13 +19,6 @@ exports.main = async () => {
     .get()
 
   const records = dailyRes.data
-  let password = ''
-  for (const record of records) {
-    if (record.password) {
-      password = record.password
-      break
-    }
-  }
 
   let list = records.filter(record => record.codeId)
   if (list.length) {
@@ -46,5 +39,5 @@ exports.main = async () => {
     })
   }
 
-  return { list, password }
+  return { list }
 }

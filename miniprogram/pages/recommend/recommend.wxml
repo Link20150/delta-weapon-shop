@@ -5,13 +5,6 @@
     <view class="tip-desc muted">下面的方案都是便宜好用的，复制改枪码，进游戏在改枪台导入就能用。先求好用，不追满改。</view>
   </view>
 
-  <!-- 今日密码 -->
-  <view class="card password-card" wx:if="{{password}}">
-    <view class="password-title">今日密码</view>
-    <view class="password-code">{{password}}</view>
-    <view class="btn-ghost password-copy" bindtap="copyCode" data-code="{{password}}">复制密码</view>
-  </view>
-
   <!-- 每日推荐 -->
   <view class="section-title">每日推荐</view>
   <view class="card daily-card" wx:for="{{daily}}" wx:key="id" data-item="{{item}}" bindtap="goDetail">

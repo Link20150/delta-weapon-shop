@@ -3,8 +3,7 @@ const util = require('../../utils/util.js')
 
 Page({
   data: {
-    daily: [],
-    password: ''
+    daily: []
   },
 
   onLoad() {
@@ -23,11 +22,10 @@ Page({
       const result = res.result || {}
       const list = (result.list || []).map(item => Object.assign({ id: item._id }, item))
       this.setData({
-        daily: (list.length ? list : fallback).slice(0, 6),
-        password: result.password || ''
+        daily: (list.length ? list : fallback).slice(0, 6)
       })
     } catch (e) {
-      this.setData({ daily: fallback, password: '' })
+      this.setData({ daily: fallback })
     }
   },
 
